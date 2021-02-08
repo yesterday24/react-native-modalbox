@@ -10,9 +10,9 @@ import {
   Easing,
   BackHandler,
   Platform,
-  Modal,
   Keyboard
 } from 'react-native';
+import Modal from 'react-native-modal';
 
 const {height: SCREEN_HEIGHT, width: SCREEN_WIDTH} = Dimensions.get('window');
 const styles = StyleSheet.create({
@@ -534,19 +534,12 @@ export default class ModalBox extends React.PureComponent {
 
     return (
       <Modal
-        onRequestClose={() => {
+        onBackButtonPress={() => {
           if (this.props.backButtonClose) {
             this.close();
           }
         }}
-        supportedOrientations={[
-          'landscape',
-          'portrait',
-          'portrait-upside-down'
-        ]}
-        transparent
-        visible={visible}
-        hardwareAccelerated={true}>
+        isVisible={visible}>
         {content}
       </Modal>
     );
